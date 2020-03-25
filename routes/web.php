@@ -27,7 +27,7 @@ Route::get('/clear', function() {
 });
 Auth::routes();
 
-
+   Route::get('/', 'UnauthController@welcome')->name('welcome');
 
 // AUTH
 Route::middleware(['auth'])->group(function(){
@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function(){
 });
 //staff || administrator AUTH
 Route::group(['middleware'=>'check-permission:administrator|staff'], function () {
-  Route::get('/','HomeController@upload');
+  //Route::get('/','HomeController@upload');
   Route::get('filesstore','HomeController@show')->name('filesstore');
   Route::post('/users/fileupload/','HomeController@fileupload')->name('users.fileupload');
 Route::post('image/delete','HomeController@fileDestroy');
